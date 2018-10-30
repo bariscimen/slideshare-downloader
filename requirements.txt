@@ -1,0 +1,6 @@
+img2pdf
+beautifulsoup
+bs4
+slugify
+tqdm
+shutil
