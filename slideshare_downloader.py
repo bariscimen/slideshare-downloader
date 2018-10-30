@@ -1,6 +1,7 @@
-#!/usr/bin/env python
+#!/usr/local/Cellar/python/3.7.0/bin/python3
 #-*- coding: utf-8 -*-
 import os
+import sys
 import img2pdf
 import re
 from os import listdir, walk
@@ -24,10 +25,10 @@ def download(url):
 
 	file_list = []
 	for image in tqdm(images):
-	    image_url = image.get('data-full').split('?')[0]
-	    num = rgx.findall(image_url)[0]
-	    file_list.append(num)
-	    urlretrieve(image_url, folder + "/" + num + ".jpg")
+		image_url = image.get('data-full').split('?')[0]
+		num = rgx.findall(image_url)[0]
+		file_list.append(num)
+		urlretrieve(image_url, folder + "/" + num + ".jpg")
 
 
 	f = ["%s/%s.jpg" % (folder, x) for x in file_list]
@@ -43,5 +44,9 @@ def download(url):
 	print("Saved as %s.pdf" % (slug,))
 
 if __name__ == "__main__":
-    url = input('Slideshare URL : ')
-    download(url)
+	try:
+		url = sys.argv[1]
+	except:		
+	   	url = input("Slideshare URL:")
+	download(url)
+
