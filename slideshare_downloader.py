@@ -46,7 +46,14 @@ def download(url):
 if __name__ == "__main__":
 	try:
 		url = sys.argv[1]
+		if url.endswith(".txt"):
+			with open(url, "r") as ins:
+				for line in ins:
+					print(line)
+					download(line)
+		else:
+			download(url)
 	except:		
-	   	url = input("Slideshare URL:")
-	download(url)
+		url = input("Slideshare URL:")
+		download(url)
 
